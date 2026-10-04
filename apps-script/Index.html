@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "DM Sans", Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: transparent;
+      }
+
+      body {
+        background: transparent !important;
+        color: #f8f7f2;
+        margin: 0;
+        padding: 0;
+      }
+
+      form {
+        margin: 0 auto;
+        max-width: 520px;
+      }
+
+      label {
+        color: #050d22;
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: .04em;
+        margin: 0 0 6px;
+      }
+
+      .form-row {
+        align-items: stretch;
+        display: flex;
+        gap: 8px;
+      }
+
+      input {
+        background: rgba(5, 13, 34, .72);
+        border: 1px solid rgba(214, 181, 109, .6);
+        border-radius: 2px;
+        color: #f8f7f2;
+        flex: 1;
+        font: 16px "DM Sans", Arial, sans-serif;
+        min-width: 0;
+        min-height: 44px;
+        padding: 0 12px;
+      }
+
+      input::placeholder {
+        color: rgba(220, 229, 240, .65);
+      }
+
+      input:focus {
+        border-color: #d6b56d;
+        outline: 2px solid rgba(214, 181, 109, .25);
+      }
+
+      button {
+        align-items: center;
+        background: #d6b56d;
+        border: 1px solid #d6b56d;
+        border-radius: 2px;
+        color: #050d22;
+        cursor: pointer;
+        display: inline-flex;
+        font: 600 11px "DM Sans", Arial, sans-serif;
+        justify-content: center;
+        letter-spacing: .06em;
+        min-height: 44px;
+        padding: 0 14px;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      button:hover {
+        background: #f8f7f2;
+      }
+
+      button:disabled {
+        cursor: wait;
+        opacity: .65;
+      }
+
+      #status {
+        color: #f0c985;
+        font-size: 13px;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      #status.error {
+        color: #f0a899;
+      }
+
+      #status.success {
+        color: #f0c985;
+        font-weight: 600;
+      }
+
+      @media (max-width: 520px) {
+        .form-row {
+          flex-direction: column;
+          gap: 7px;
+        }
+
+        input {
+          min-height: 42px;
+        }
+
+        button {
+          min-height: 42px;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form id="rsvpForm">
+      <div class="form-row">
+        <input id="guestName" name="guestName" type="text" maxlength="100" autocomplete="name" placeholder="Escribe tu nombre" required>
+        <button id="submitButton" type="submit">Confirmar asistencia <span aria-hidden="true">&nbsp;→</span></button>
+      </div>
+    </form>
+    <p id="status" role="status" aria-live="polite"></p>
+
+    <script>
+      const form = document.getElementById("rsvpForm");
+      const nameInput = document.getElementById("guestName");
+      const button = document.getElementById("submitButton");
+      const status = document.getElementById("status");
+
+      function reportHeight() {
+        window.parent.postMessage({
+          type: "rsvp-form-height",
+          height: document.documentElement.scrollHeight
+        }, "*");
+      }
+
+      window.addEventListener("load", reportHeight);
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = nameInput.value.trim();
+
+        if (!name) {
+          status.textContent = "Escribe tu nombre para continuar.";
+          status.className = "error";
+          reportHeight();
+          return;
+        }
+
+        button.disabled = true;
+        status.textContent = "Guardando tu confirmación...";
+        status.className = "";
+        reportHeight();
+
+        google.script.run
+          .withSuccessHandler(() => {
+            form.querySelector(".form-row").hidden = true;
+            status.textContent = "¡Gracias, " + name + "! Tu confirmación quedó registrada.";
+            status.className = "success";
+            reportHeight();
+          })
+          .withFailureHandler((error) => {
+            button.disabled = false;
+            status.textContent = error && error.message
+              ? error.message
+              : "No se pudo guardar la confirmación. Inténtalo nuevamente.";
+            status.className = "error";
+            reportHeight();
+          })
+          .submitRsvp(name);
+      });
+    </script>
+  </body>
+</html>

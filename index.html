@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mis XV Años - Estrella</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500,600&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<div class="moon" aria-hidden="true"></div>
+<div id="magicContainer"></div>
+<div id="particles"></div>
+
+<audio id="introAudio" src="music/intro.mp3"></audio>
+<audio id="backgroundAudio" loop src="music/background.mp3"></audio>
+
+<button id="soundToggle" class="sound-toggle" type="button" aria-label="Activar sonido" title="Activar sonido">
+    <span class="sound-icon">♪</span>
+    <span class="sound-label">Sonido</span>
+</button>
+
+<section id="welcome" class="screen">
+    <div class="welcome-scene">
+        <p class="eyebrow">UNA NOCHE PARA CELEBRAR</p>
+        <p class="welcome-kicker">Una noche escrita entre estrellas</p>
+        <h1 class="welcome-title">¡Estás invitado!</h1>
+        <p class="welcome-meta">Mis XV años </p>
+        <div class="welcome-rule"><span></span><i></i><span></span></div>
+        <p class="privacy-box">Una celebración llena de magia, alegría y momentos para recordar.</p>
+        <button id="openStory" class="primary-button" type="button">Abrir la invitación <span>→</span></button>
+       
+    </div>
+    <img src="img/castillo.png" class="castle castle-welcome" alt="Castillo iluminado">
+</section>
+
+<main id="story" class="hidden">
+    <section class="book-opening" aria-label="Apertura de la invitación">
+        <div class="book-cover"><img src="img/libro.png" alt="Libro mágico de la invitación"></div>
+        <p>La historia comienza</p>
+    </section>
+
+    <div class="story-container">
+        <section class="story-intro reveal">
+            <p class="eyebrow">EL COMIENZO</p>
+            <h2>Érase una vez</h2>
+            <p class="story-copy">Bajo el brillo de una estrella comenzó una historia llena de sueños, alegría y momentos inolvidables.</p>
+            <p class="story-copy">Hoy esa estrella está lista para vivir una noche mágica y desea compartirla contigo.</p>
+        </section>
+
+        <section class="hero-name reveal">
+            <img src="img/estrella.png" class="star-emblem" alt="Estrella brillante">
+            <p class="eyebrow">LA PROTAGONISTA</p>
+            <h1 class="estrella">ESTRELLA</h1>
+            <p class="subtitle">Mis XV Años</p>
+        </section>
+
+        <section class="event-section reveal">
+            <p class="eyebrow">RESERVA LA FECHA</p>
+            <h2>Una noche para recordar</h2>
+            <div class="event-details">
+                <div><span class="detail-label">Fecha</span><strong>14 noviembre 2026</strong></div>
+                <div><span class="detail-label">Hora</span><strong>6:00 PM</strong></div>
+                <div><span class="detail-label">Lugar</span><strong>Círculo Militar de Chorrillos</strong><small>Salón Principal</small></div>
+            </div>
+            <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=C%C3%ADrculo%20Militar%20de%20Chorrillos" target="_blank" rel="noreferrer">Ver ubicación <span>↗</span></a>
+        </section>
+
+        <section class="countdown-section reveal">
+            <div class="countdown-heading">
+                <span class="countdown-star" aria-hidden="true">✦</span>
+                <p class="eyebrow">EL RELOJ ENCANTADO</p>
+                <h2>El tiempo vuela hacia nuestra noche</h2>
+                <p class="countdown-story">Cuenta la leyenda que, cuando el reloj marque el gran día, las estrellas se reunirán para celebrar los XV de Estrella.</p>
+            </div>
+            <div class="countdown" aria-label="Tiempo que falta para la celebración">
+                <div class="countdown-card">
+                    <div class="countdown-face">
+                        <svg class="countdown-ring" viewBox="0 0 44 44" aria-hidden="true">
+                            <circle class="countdown-ring-track" cx="22" cy="22" r="19"></circle>
+                            <circle class="countdown-ring-progress" data-ring="days" cx="22" cy="22" r="19" pathLength="100"></circle>
+                        </svg>
+                        <span id="days" aria-label="Días restantes">00</span>
+                    </div>
+                    <small>Días</small>
+                </div>
+                <div class="countdown-card">
+                    <div class="countdown-face">
+                        <svg class="countdown-ring" viewBox="0 0 44 44" aria-hidden="true">
+                            <circle class="countdown-ring-track" cx="22" cy="22" r="19"></circle>
+                            <circle class="countdown-ring-progress" data-ring="hours" cx="22" cy="22" r="19" pathLength="100"></circle>
+                        </svg>
+                        <span id="hours" aria-label="Horas restantes">00</span>
+                    </div>
+                    <small>Horas</small>
+                </div>
+                <div class="countdown-card">
+                    <div class="countdown-face">
+                        <svg class="countdown-ring" viewBox="0 0 44 44" aria-hidden="true">
+                            <circle class="countdown-ring-track" cx="22" cy="22" r="19"></circle>
+                            <circle class="countdown-ring-progress" data-ring="minutes" cx="22" cy="22" r="19" pathLength="100"></circle>
+                        </svg>
+                        <span id="minutes" aria-label="Minutos restantes">00</span>
+                    </div>
+                    <small>Minutos</small>
+                </div>
+                <div class="countdown-card">
+                    <div class="countdown-face">
+                        <svg class="countdown-ring" viewBox="0 0 44 44" aria-hidden="true">
+                            <circle class="countdown-ring-track" cx="22" cy="22" r="19"></circle>
+                            <circle class="countdown-ring-progress" data-ring="seconds" cx="22" cy="22" r="19" pathLength="100"></circle>
+                        </svg>
+                        <span id="seconds" aria-label="Segundos restantes">00</span>
+                    </div>
+                    <small>Segundos</small>
+                </div>
+            </div>
+            <p class="countdown-note" id="countdownNote" aria-live="polite">Cada segundo nos acerca a una noche mágica...</p>
+        </section>
+
+        <section class="dress-section reveal">
+            <div class="crystal-line"></div>
+            <p class="eyebrow">CÓDIGO DE VESTIMENTA</p>
+            <h2>Elegante</h2>
+            <p>Una noche especial merece un atuendo a la altura de la ocasión.</p>
+        </section>
+
+        <section class="guidelines-section reveal">
+            <p class="eyebrow">ANTES DE LA CELEBRACIÓN</p>
+            <h2>Para una noche inolvidable</h2>
+            <p class="guidelines-intro">¡Toma en cuenta estas indicaciones para acompañarnos!</p>
+            <div class="guidelines-grid">
+                <article class="guideline-card">
+                    <span class="guideline-icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 21h34v21H7zM5 15h38v8H5zM24 15v27" />
+                            <path d="M24 15H14.5a5 5 0 1 1 5-5c0 3 4.5 5 4.5 5Zm0 0h9.5a5 5 0 1 0-5-5c0 3-4.5 5-4.5 5Z" />
+                        </svg>
+                    </span>
+                    <h3>Un regalo, por favor</h3>
+                    <p>Para acompañarnos en esta noche, es indispensable venir con un regalo.</p>
+                </article>
+                <article class="guideline-card">
+                    <span class="guideline-icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 11a7 7 0 0 1 14 0M24 18l-17 9m17-9 17 9M7 27h34M12 27l5 13h14l5-13" />
+                            <path class="icon-alert" d="m8 8 32 32" />
+                        </svg>
+                    </span>
+                    <h3>Evita el celeste, azul y plateado</h3>
+                    <p>Te pedimos elegir otros colores para tu atuendo. ¡Gracias por ayudarnos!</p>
+                </article>
+                <article class="guideline-card">
+                    <span class="guideline-icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m5 22 38-17-13 38-7-16L5 22Z" />
+                            <path d="m23 27 20-22" />
+                            <path class="icon-alert" d="m8 8 32 32" />
+                        </svg>
+                    </span>
+                    <h3>No la reenvíes</h3>
+                    <p>Esta invitación es personal. Por favor, no la compartas ni la envíes a otras personas.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="confirmation-section reveal" id="confirmation">
+            <p class="eyebrow">EL ÚLTIMO CAPÍTULO</p>
+            <h2>Tu presencia hará la noche aún más especial</h2>
+            <p class="confirmation-guest">Escribe tu nombre para confirmar tu asistencia. </p>
+            <div class="confirmation-form-shell">
+                <iframe
+                    class="confirmation-form-frame"
+                    src="https://script.google.com/macros/s/AKfycbxbfAw_pDA2R9752ySn8AFySKUEYkThx53uBBS7RposYi0lHhajUQob-So90cOAdrJt9A/exec"
+                    title="Formulario de confirmación de asistencia"
+                    scrolling="no"
+                    loading="lazy">
+                    Cargando formulario...
+                </iframe>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
