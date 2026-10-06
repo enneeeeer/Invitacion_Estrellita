@@ -103,8 +103,10 @@ h2 { font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.05; margin: 18px 0 25
 .confirmation-section { background: linear-gradient(140deg, rgba(16, 43, 90, .7), rgba(5, 13, 34, .3)); border: 1px solid var(--line); margin-inline: auto; max-width: 650px; padding: 65px 40px; }
 .confirmation-section h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
 .confirmation-guest { color: var(--mist); margin-bottom: 30px; }
-.confirmation-form-shell { background: transparent; border: 0; box-shadow: none; margin: 0 auto; max-width: 100%; overflow: hidden; padding: 0; width: 656px; }
-.confirmation-form-frame { background: transparent; border: 0; display: block; height: 60px; max-width: 100%; width: 640px; }
+.confirmation-form-shell { background: transparent; border: 0; box-shadow: none; margin: 0 auto; max-width: 100%; padding: 0; width: 100%; }
+.confirmation-form-frame { background: transparent; border: 0; display: block; height: 120px; width: 100%; }
+.confirmation-form-link { color: var(--silver); display: inline-block; font-size: .72rem; letter-spacing: .04em; line-height: 1.5; margin-top: 14px; text-decoration: underline; text-underline-offset: 3px; }
+.confirmation-form-link span { color: var(--gold); margin-left: 4px; }
 .confirmation-section label { display: block; margin-bottom: 12px; }
 .confirm-row { align-items: stretch; display: flex; gap: 10px; justify-content: center; }
 input { background: rgba(5, 13, 34, .58); border: 1px solid var(--line); color: var(--ivory); font: 1rem "DM Sans", sans-serif; min-width: 80px; padding: 0 12px; text-align: center; }
@@ -144,7 +146,7 @@ input { background: rgba(5, 13, 34, .58); border: 1px solid var(--line); color: 
     .countdown-face span { font-size: clamp(1.45rem, 7vw, 2rem); }
     .countdown-card small { font-size: .52rem; letter-spacing: .1em; }
     .confirmation-section { padding: 48px 20px; }
-    .confirmation-form-frame { height: 105px; }
+    .confirmation-form-frame { height: 150px; }
     .confirm-row { flex-direction: column; }
     input { min-height: 50px; width: 100%; }
     .confirm-row .primary-button { width: 100%; }
